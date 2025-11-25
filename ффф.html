@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ваш аккаунт был взломан</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FFFAFA 100%);
+            color: black;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            max-width: 95%;
+            width: 100%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            margin: 10px;
+        }
+        
+        h1 {
+            color: black;
+            font-size: 22px;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        
+        p {
+            color: black;
+            font-size: 16px;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+        
+        .prank-button {
+            background: #4169E1;
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 12px rgba(65, 105, 225, 0.4);
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .prank-button:hover {
+            background: #3151C1;
+            transform: scale(1.02);
+        }
+        
+        .volume-indicator {
+            background: rgba(0, 0, 0, 0.05);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: bold;
+            color: black;
+            font-size: 14px;
+        }
+        
+        .wi1 {
+            width: 120px;
+            height: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .AAA {
+            font-size: 16px;
+        }
+        
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Адаптация для очень маленьких экранов */
+        @media (max-width: 360px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 20px;
+            }
+            
+            p {
+                font-size: 14px;
+            }
+            
+            .prank-button {
+                padding: 16px 25px;
+                font-size: 15px;
+            }
+        }
+        
+        /* Портретная ориентация */
+        @media (orientation: portrait) {
+            body {
+                padding: 15px;
+            }
+        }
+        
+        /* Ландшафтная ориентация */
+        @media (orientation: landscape) and (max-height: 600px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px;
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="google-horizontal-logo.png" class="wi1" alt="Google">
+        <h1>Ваш Google аккаунт был взломан</h1>
+        <p class="AAA">некто по имени pofi_standoff2_2013@gmail.com зашел на ваш аккаунт</p>
+        
+        <div class="volume-indicator">
+            <span id="volumeLevel">🔊 Громкость установлена на максимум</span>
+        </div>
+        
+        <div class="button-container">
+            <button class="prank-button" onclick="playPrankSound()">
+                ПРОСЛУШАТЬ ИНСТРУКЦИЮ
+            </button>
+            
+            <p class="AAA">У вас 3 часа. По истечении времени ваша учетная запись будет удалена в целях безопасности и конфиденциальности. Прибавьте звук и прослушайте инструкцию по предотвращению опасности</p>
+            
+            <button class="prank-button" onclick="playPrankSound()">
+                СМЕНИТЬ ПАРОЛЬ ИЛИ ВЫБРАТЬ ИНОЕ ДЕЙСТВИЕ
+            </button>
+        </div>
+    </div>
+
+    <!-- Скрытые аудио элементы -->
+    <audio id="prankSound1">
+        <source src="farts-4.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="prankSound2">
+        <source src="farts-4.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="prankSound3">
+        <source src="farts-4.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Устанавливаем максимальную громкость при загрузке страницы
+        window.addEventListener('load', function() {
+            const sounds = [
+                document.getElementById('prankSound1'),
+                document.getElementById('prankSound2'), 
+                document.getElementById('prankSound3')
+            ];
+            
+            // Устанавливаем громкость 100% для всех звуков
+            sounds.forEach(sound => {
+                sound.volume = 1.0;
+            });
+            
+            console.log('🔊 Громкость установлена на 100%!');
+            
+            // Автоматически пытаемся воспроизвести звук при загрузке (для мобильных)
+            setTimeout(() => {
+                playPrankSound();
+            }, 1000);
+        });
+
+        // Функция для воспроизведения случайного звука
+        function playPrankSound() {
+            const sounds = [
+                document.getElementById('prankSound1'),
+                document.getElementById('prankSound2'),
+                document.getElementById('prankSound3')
+            ];
+            
+            // Выбираем случайный звук
+            const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
+            
+            // Останавливаем все звуки перед воспроизведением нового
+            sounds.forEach(sound => {
+                sound.pause();
+                sound.currentTime = 0;
+            });
+            
+            // Воспроизводим выбранный звук
+            randomSound.play().catch(error => {
+                console.log('Ошибка воспроизведения:', error);
+                // Для мобильных устройств показываем алерт
+                if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    alert('Нажмите "Разрешить" для воспроизведения звука');
+                }
+            });
+            
+            // Меняем текст кнопки после нажатия
+            const buttons = document.querySelectorAll('.prank-button');
+            const messages = [
+                "АХХААХХАХАХАХА",
+                "ЭМ... НУ ДА", 
+                "ХАХАХАХАХАХАХАХАХ",
+                "НЕ МТОИЛО СЛУШАТЬ "
+            ];
+            buttons.forEach(button => {
+                button.textContent = messages[Math.floor(Math.random() * messages.length)];
+            });
+        }
+        
+        // Добавляем обработчик для любых кликов (на всякий случай)
+        document.addEventListener('click', function() {
+            const sounds = document.querySelectorAll('audio');
+            sounds.forEach(sound => {
+                sound.volume = 1.0;
+            });
+        });
+        
+        // Обработка касаний для мобильных устройств
+        document.addEventListener('touchstart', function() {
+            const sounds = document.querySelectorAll('audio');
+            sounds.forEach(sound => {
+                sound.volume = 1.0;
+            });
+        });
+    </script>
+</body>
+</html>
