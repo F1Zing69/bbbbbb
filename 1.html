@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интересный сайт</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FFFAFA 100%);
+            color: black; /* Изменил на черный для всего текста по умолчанию */
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9); /* Сделал фон более непрозрачным */
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            color: black; /* Черный текст в контейнере */
+        }
+        h1 {
+            color: black !important; /* Черный цвет для заголовка */
+        }
+        p {
+            color: black !important; /* Черный цвет для параграфов */
+        }
+        .prank-button {
+            background: #0c42e2;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(65, 105, 225, 0.4);
+        }
+        .prank-button:hover {
+            background: #0f39d1;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(65, 105, 225, 0.6);
+        }
+        .warning {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-top: 30px;
+            color: black; /* Черный для предупреждения */
+        }
+        .volume-indicator {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+            color: black; /* Черный для индикатора громкости */
+        }
+        .wi1 {
+            width: 150px ;
+            height: 50px ;
+        }
+        .AAA{
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img  src="google-horizontal-logo.png" class="wi1">
+        <h1>Ваш Google аккаунт был взломан</h1>
+        <p class="AAA">некто по имени pofi_standoff2_2013@gmail.com зашел на ваш аккаунт</p>
+        
+        <div class="volume-indicator">
+            <span id="volumeLevel"></span>
+        </div>
+        
+        <button class="prank-button" onclick="playPrankSound()">
+            Прослушать инструкцию
+        </button>
+        
+        <p class="AAA">У вас 3 часа. По истечении времени ваша учетная запись будет удалена в целях безопасности и конфиденциальности. Прибавьте звук и прослушайте инструкцию по предотвращению опасности</p>
+        
+        <button class="prank-button" onclick="playPrankSound()">
+            Сменить пароль 
+        </button>
+
+    </div>
+
+    <!-- Скрытые аудио элементы -->
+    <audio id="prankSound1">
+        <source src="farts-4.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="prankSound2">
+        <source src="farts-4.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="prankSound3">
+        <source src="farts-4.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Устанавливаем максимальную громкость при загрузке страницы
+        window.addEventListener('load', function() {
+            const sounds = [
+                document.getElementById('prankSound1'),
+                document.getElementById('prankSound2'), 
+                document.getElementById('prankSound3')
+            ];
+            
+            // Устанавливаем громкость 100% для всех звуков
+            sounds.forEach(sound => {
+                sound.volume = 1.0;
+            });
+            
+            console.log('🔊 Громкость установлена на 100%!');
+        });
+
+        // Функция для воспроизведения случайного звука
+        function playPrankSound() {
+            const sounds = [
+                document.getElementById('prankSound1'),
+                document.getElementById('prankSound2'),
+                document.getElementById('prankSound3')
+            ];
+            
+            // Выбираем случайный звук
+            const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
+            
+            // Останавливаем все звуки перед воспроизведением нового
+            sounds.forEach(sound => {
+                sound.pause();
+                sound.currentTime = 0;
+            });
+            
+            // Воспроизводим выбранный звук
+            randomSound.play().catch(error => {
+                console.log('Ошибка воспроизведения:', error);
+                alert('Для работы звука разрешите автовоспроизведение на этом сайте!');
+            });
+            
+            // Меняем текст кнопки после нажатия
+            const buttons = document.querySelectorAll('.prank-button');
+            const messages = [
+                "АХХААХХАХАХАХА",
+                "ЭМ... НУ ДА", 
+                "ХАХАХАХАХАХАХАХАХ",
+                "НЕ СТОИЛО СЛУШАТЬ"
+            ];
+            buttons.forEach(button => {
+                button.textContent = messages[Math.floor(Math.random() * messages.length)];
+            });
+        }
+        
+        // Добавляем обработчик для любых кликов (на всякий случай)
+        document.addEventListener('click', function() {
+            const sounds = document.querySelectorAll('audio');
+            sounds.forEach(sound => {
+                sound.volume = 1.0;
+            });
+        });
+    </script>
+</body>
+</html>
